@@ -1,13 +1,14 @@
-import { Modal } from '@nextui-org/react';
 import Head from 'next/head';
 import React, { FC } from 'react';
 import { Sidebar } from '../components/Sidebar';
+import Modal from 'react-modal';
+import { quioscoContext } from '../store/quioscoContext';
+import ModalProducto from '../components/ModalProducto';
 
 type Props = {
 	pagina: string;
 	children: React.ReactNode;
 };
-
 const customStyles = {
 	content: {
 		top: '50%',
@@ -22,6 +23,8 @@ const customStyles = {
 Modal.setAppElement('#__next');
 
 export const Layout: FC<Props> = ({ pagina, children }) => {
+	const { modal } = quioscoContext();
+
 	return (
 		<>
 			<Head>
@@ -37,6 +40,9 @@ export const Layout: FC<Props> = ({ pagina, children }) => {
 					<main className="h-screen overflow-y-scroll ">{children}</main>
 				</div>
 			</div>
+			<Modal isOpen={modal} style={customStyles}>
+				<ModalProducto />
+			</Modal>
 		</>
 	);
 };
