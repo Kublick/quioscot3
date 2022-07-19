@@ -1,28 +1,41 @@
+import { Modal } from '@nextui-org/react';
 import Head from 'next/head';
 import React, { FC } from 'react';
 import { Sidebar } from '../components/Sidebar';
-// import { Sidebar } from '../components/Sidebar';
 
 type Props = {
 	pagina: string;
 	children: React.ReactNode;
 };
 
+const customStyles = {
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)',
+	},
+};
+
+Modal.setAppElement('#__next');
+
 export const Layout: FC<Props> = ({ pagina, children }) => {
 	return (
 		<>
 			<Head>
-				<title>Café - {pagina}</title>
+				<title>{pagina}</title>
 			</Head>
 			<meta name="description" content="Quiosco Cafeteria" />
 
 			<div className="md:flex">
-				<aside className="md:w-4/12 xl:w-1/4 2xl:w-1/5">
+				<aside className="min-w-[297px] md:w-4/12 xl:w-1/4 2xl:w-1/5">
 					<Sidebar />
 				</aside>
-				<main className="md:w-8-12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll ">
-					Test
-				</main>
+				<div className="p-10">
+					<main className="h-screen overflow-y-scroll ">{children}</main>
+				</div>
 			</div>
 		</>
 	);
