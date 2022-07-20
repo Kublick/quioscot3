@@ -1,3 +1,6 @@
-# Create T3 App
+Quiosco App con un twist
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+Se uso typescript, Zustand en remplazo de context, tRPC para controlar las llamadas al backend.
+
+
+
