@@ -2,6 +2,7 @@ import create from 'zustand';
 import { ICategoria } from '../interfaces/categorias';
 import { IPedido } from '../interfaces/pedido';
 import { IProducto } from '../interfaces/producto';
+import { toast } from 'react-toastify';
 
 type IQuiosco = {
 	categorias: ICategoria[];
@@ -57,11 +58,13 @@ export const quioscoContext = create<IQuiosco>((set, get) => ({
 				...state,
 				pedido: pedidoActualizado,
 			}));
+			toast.success('Pedido actualizado');
 		} else {
 			set((state) => ({
 				...state,
 				pedido: [...state.pedido, pedido],
 			}));
+			toast.success('Producto agregado al pedido');
 		}
 	},
 }));

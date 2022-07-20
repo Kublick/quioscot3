@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import React, { FC } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Sidebar } from '../components/Sidebar';
 import Modal from 'react-modal';
 import { quioscoContext } from '../store/quioscoContext';
 import ModalProducto from '../components/ModalProducto';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {
 	pagina: string;
@@ -43,6 +45,7 @@ export const Layout: FC<Props> = ({ pagina, children }) => {
 			<Modal isOpen={modal} style={customStyles}>
 				<ModalProducto />
 			</Modal>
+			<ToastContainer />
 		</>
 	);
 };

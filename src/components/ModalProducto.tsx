@@ -4,6 +4,7 @@ import { formatearDinero } from '../helpers';
 import { IProducto } from '../interfaces/producto';
 import { quioscoContext } from '../store/quioscoContext';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const ModalProducto = () => {
 	const { producto, setModal, modal, addPedido, pedido } = quioscoContext();
@@ -27,6 +28,7 @@ const ModalProducto = () => {
 			...pedido,
 			cantidad,
 		});
+
 		setModal(false);
 	};
 
