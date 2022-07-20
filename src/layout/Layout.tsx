@@ -23,7 +23,7 @@ const customStyles = {
 Modal.setAppElement('#__next');
 
 export const Layout: FC<Props> = ({ pagina, children }) => {
-	const { modal } = quioscoContext();
+	const { modal, pedido } = quioscoContext();
 
 	return (
 		<>
@@ -31,7 +31,7 @@ export const Layout: FC<Props> = ({ pagina, children }) => {
 				<title>{pagina}</title>
 			</Head>
 			<meta name="description" content="Quiosco Cafeteria" />
-
+			{JSON.stringify(pedido)}
 			<div className="md:flex">
 				<aside className="min-w-[297px] md:w-4/12 xl:w-1/4 2xl:w-1/5">
 					<Sidebar />

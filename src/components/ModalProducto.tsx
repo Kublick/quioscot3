@@ -1,11 +1,34 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { formatearDinero } from '../helpers';
+import { IProducto } from '../interfaces/producto';
 import { quioscoContext } from '../store/quioscoContext';
+import { useEffect } from 'react';
 
 const ModalProducto = () => {
-	const { producto, setModal, modal } = quioscoContext();
+	const { producto, setModal, modal, addPedido, pedido } = quioscoContext();
 	const [cantidad, setCantidad] = useState(1);
+	const [edicion, setEdicion] = useState(false);
+
+	useEffect(() => {
+		if (pedido.some((p) => p.id === producto?.id)) {
+			setEdicion(true);
+		}
+		const productoEdicion = pedido?.find((p) => p.id === producto?.id);
+
+		setCantidad(productoEdicion?.cantidad || 1);
+	}, [producto, pedido]);
+
+	const handleAddPedido = (
+		{ categoriaId, imagen, ...pedido }: any,
+		cantidad: number,
+	) => {
+		addPedido({
+			...pedido,
+			cantidad,
+		});
+		setModal(false);
+	};
 
 	return (
 		<div className="md:flex gap-10">
@@ -89,6 +112,14 @@ const ModalProducto = () => {
 						</svg>
 					</button>
 				</div>
+
+				<button
+					type="button"
+					className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
+					onClick={() => handleAddPedido(producto, cantidad)}
+				>
+					{edicion ? 'Actualizar' : 'Agregar '} Pedido
+				</button>
 			</div>
 		</div>
 	);

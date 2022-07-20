@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-
 import { Producto } from '../components/Producto';
 import { Layout } from '../layout/Layout';
 import { quioscoContext } from '../store/quioscoContext';
