@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import { quioscoContext } from '../store/quioscoContext';
 import ModalProducto from '../components/ModalProducto';
 import 'react-toastify/dist/ReactToastify.css';
+import { Pasos } from '../components/Pasos';
 
 type Props = {
 	pagina: string;
@@ -33,12 +34,12 @@ export const Layout: FC<Props> = ({ pagina, children }) => {
 				<title>{pagina}</title>
 			</Head>
 			<meta name="description" content="Quiosco Cafeteria" />
-			{JSON.stringify(pedido)}
 			<div className="md:flex">
 				<aside className="min-w-[297px] md:w-4/12 xl:w-1/4 2xl:w-1/5">
 					<Sidebar />
 				</aside>
-				<div className="p-10">
+				<div className="p-10 w-full">
+					<Pasos />
 					<main className="h-screen overflow-y-scroll ">{children}</main>
 				</div>
 			</div>
