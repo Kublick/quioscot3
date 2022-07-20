@@ -21,6 +21,7 @@ type IQuiosco = {
 	setNombre: (nombre: string) => void;
 	total: number;
 	setTotal: (total: number) => void;
+	resetState: () => void;
 };
 
 export const quioscoContext = create<IQuiosco>((set, get) => ({
@@ -98,4 +99,14 @@ export const quioscoContext = create<IQuiosco>((set, get) => ({
 			...state,
 			total,
 		})),
+	resetState: () => {
+		set((state) => ({
+			...state,
+			categoriaActual: get().categorias[0],
+			producto: null,
+			pedido: [],
+			nombre: '',
+			total: 0,
+		}));
+	},
 }));
