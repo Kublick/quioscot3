@@ -26,7 +26,7 @@ const customStyles = {
 Modal.setAppElement('#__next');
 
 export const Layout: FC<Props> = ({ pagina, children }) => {
-	const { modal, pedido } = quioscoContext();
+	const { modal } = quioscoContext();
 
 	return (
 		<>

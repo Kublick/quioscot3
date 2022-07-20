@@ -5,6 +5,7 @@ export const pedidoValidation = z.object({
 	nombre: z.string(),
 	precio: z.number(),
 	cantidad: z.number(),
+	imagen: z.string(),
 });
 
 export type IPedido = z.infer<typeof pedidoValidation>;

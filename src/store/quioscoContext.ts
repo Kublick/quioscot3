@@ -15,6 +15,12 @@ type IQuiosco = {
 	setModal: (modal: boolean) => void;
 	pedido: IPedido[];
 	addPedido: (pedido: IPedido) => void;
+	handleEditarCantidades: (id: number) => void;
+	handleEliminarProducto: (id: number) => void;
+	nombre: string;
+	setNombre: (nombre: string) => void;
+	total: number;
+	setTotal: (total: number) => void;
 };
 
 export const quioscoContext = create<IQuiosco>((set, get) => ({
@@ -67,4 +73,29 @@ export const quioscoContext = create<IQuiosco>((set, get) => ({
 			toast.success('Producto agregado al pedido');
 		}
 	},
+	handleEditarCantidades: (id: number) => {
+		const productoActualizar = get().pedido.filter((p) => p.id === id);
+		get().setProducto(productoActualizar[0] as any);
+		get().setModal(true);
+	},
+	handleEliminarProducto: (id: number) => {
+		console.log(id);
+		const pedidoActualizado = get().pedido.filter((p) => p.id !== id);
+		set((state) => ({
+			...state,
+			pedido: pedidoActualizado,
+		}));
+	},
+	nombre: '',
+	setNombre: (nombre: string) =>
+		set((state) => ({
+			...state,
+			nombre,
+		})),
+	total: 0,
+	setTotal: (total: number) =>
+		set((state) => ({
+			...state,
+			total,
+		})),
 }));

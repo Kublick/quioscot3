@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { FC, useEffect } from 'react';
 import { ICategoria } from '../interfaces/categorias';
 import { quioscoContext } from '../store/quioscoContext';
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export const Categoria: FC<Props> = ({ categoria }) => {
+	const router = useRouter();
+
 	const { icono, nombre, id } = categoria;
 	const { setCategoriaActual, categorias, categoriaActual } = quioscoContext();
 
@@ -21,6 +24,7 @@ export const Categoria: FC<Props> = ({ categoria }) => {
 	const handleCategoriaActual = (id: number) => {
 		const categoria = categorias.filter((cat) => cat.id === id);
 		setCategoriaActual(categoria[0] as ICategoria);
+		router.push('/');
 	};
 
 	return (

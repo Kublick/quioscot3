@@ -21,7 +21,7 @@ const ModalProducto = () => {
 	}, [producto, pedido]);
 
 	const handleAddPedido = (
-		{ categoriaId, imagen, ...pedido }: any,
+		{ categoriaId, ...pedido }: any,
 		cantidad: number,
 	) => {
 		addPedido({
